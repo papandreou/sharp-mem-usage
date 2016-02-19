@@ -3,7 +3,7 @@ var sharp = require('sharp');
 var async = require('async');
 
 var cacheMem = parseInt(process.env.CACHE_MEM || 20);
-sharp.cache({memory: 6, files:20, items: 100});
+sharp.cache({memory: cacheMem, files:20, items: 100});
 
 console.log("CACHE", sharp.cache());
 
@@ -22,7 +22,6 @@ var singleTest = function(cb) {
       if (err) {
         throw err;
       }
-      console.log("info:", info);
       cb();
     });
   });
@@ -35,7 +34,7 @@ var run = function(name) {
       function () { return count < 5; },
       function (callback) {
         count++;
-        console.log(name, "next", count, process.memoryUsage());
+        console.log(name, "iteration", count, process.memoryUsage());
         singleTest(callback);
       },
       function (err, n) {
