@@ -38,6 +38,7 @@ var run = function(name) {
         singleTest(callback);
       },
       function (err, n) {
+        console.log("CACHE BEFORE EXIT", sharp.cache());
       }
   );
 };
