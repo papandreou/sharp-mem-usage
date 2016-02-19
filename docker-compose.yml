@@ -1,0 +1,4 @@
+test:
+  build: .
+  environment:
+    CACHE_MEM: '50'
