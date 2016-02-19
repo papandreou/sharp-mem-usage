@@ -47,6 +47,8 @@ RUN mkdir /node && \
   curl -L https://nodejs.org/download/release/v${VERSION_NODE}/node-v${VERSION_NODE}-linux-x64.tar.gz | tar xzC /node --strip-components=1
 ENV PATH /node/bin:$PATH
 
-ADD package.json /app/package.json
 WORKDIR /app
+ADD package.json /app/package.json
+RUN npm install
+ADD . /app
 CMD node test
