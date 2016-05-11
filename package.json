@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "sharp": "git://github.com/lovell/sharp.git#a21760b374fa57b6f92e42c6e9c6b4ae2f25e95f",
+    "sharp": "git://github.com/lovell/sharp.git#f8eab4996235844e8e767f229275abefa9c0707f",
     "async": "1.5.2"
   }
 }
