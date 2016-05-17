@@ -21,6 +21,7 @@ RUN yum -y install \
   libwebp-devel \
   orc-devel \
   swig \
+  jemalloc \
   && yum -y clean all
 
 ENV TARGET /usr/local
@@ -51,4 +52,4 @@ WORKDIR /app
 ADD package.json /app/package.json
 RUN npm install
 ADD . /app
-CMD node --trace-gc test
+CMD LD_PRELOAD=/usr/lib64/libjemalloc.so.1 node --trace-gc test
