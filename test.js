@@ -27,17 +27,18 @@ var singleTest = function(cb) {
 var run = function(name) {
   var count = 0;
 
-  async.whilst(
-      function () { return count < 5; },
-      function (callback) {
-        count++;
-        console.log(name, "iteration", count, process.memoryUsage());
-        singleTest(callback);
-      },
-      function (err, n) {
-        console.log("CACHE BEFORE EXIT", sharp.cache());
-      }
-  );
+  var num = 500;
+  var iterationNumbers = [];
+  for (var i = 1 ; i <= num ; i += 1) {
+    iterationNumbers.push(i);
+  }
+
+  async.eachLimit(iterationNumbers, 1, function (iterationNumber, cb) {
+    console.log(name, "before iteration #" + iterationNumber, process.memoryUsage());
+    singleTest(cb);
+  }, function (err) {
+    if (err) throw err;
+  });
 };
 
 run("example");
