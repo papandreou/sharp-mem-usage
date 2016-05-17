@@ -2,10 +2,7 @@ var fs = require('fs');
 var sharp = require('sharp');
 var async = require('async');
 
-var cacheMem = parseInt(process.env.CACHE_MEM || 20);
-sharp.cache({memory: cacheMem, files:20, items: 100});
-
-console.log("CACHE", sharp.cache());
+sharp.cache(false);
 
 var fileName = '100mpix.jpg';
 
