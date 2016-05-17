@@ -7,20 +7,15 @@ sharp.cache(false);
 var fileName = '100mpix.jpg';
 
 var singleTest = function(cb) {
-  fs.readFile(fileName, function (err, buffer ) {
+  var i = sharp(fileName);
+  i.embed().interpolateWith(sharp.interpolator.bicubic)
+    .resize(1000,1000).rotate()
+    .background({r:0,g:0,b:0,a:0}).quality(75)
+    .toFormat('jpeg').toBuffer(function(err, output, info) {
     if (err) {
       throw err;
     }
-    var i = sharp(buffer);
-    i.embed().interpolateWith(sharp.interpolator.bicubic)
-      .resize(1000,1000).rotate()
-      .background({r:0,g:0,b:0,a:0}).quality(75)
-      .toFormat('jpeg').toBuffer(function(err, output, info) {
-      if (err) {
-        throw err;
-      }
-      cb();
-    });
+    cb();
   });
 };
 
