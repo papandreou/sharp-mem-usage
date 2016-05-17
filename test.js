@@ -1,13 +1,16 @@
 var fs = require('fs');
 var sharp = require('sharp');
 var async = require('async');
+var pathModule = require('path');
 
 sharp.cache(false);
 
 var fileName = '100mpix.jpg';
 
+var image = fs.readFileSync(pathModule.resolve(__dirname, '100mpix.jpg'));
+
 var singleTest = function(cb) {
-  var i = sharp(fileName);
+  var i = sharp(image);
   i.embed().interpolateWith(sharp.interpolator.bicubic)
     .resize(1000,1000).rotate()
     .background({r:0,g:0,b:0,a:0}).quality(75)
