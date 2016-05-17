@@ -24,7 +24,7 @@ RUN yum -y install \
   && yum -y clean all
 
 ENV TARGET /usr/local
-ENV VIPS_COMMIT 0a4991cbc096542ba90d976d1bcaebffc2ee1830
+ENV VIPS_COMMIT 54d8e4808f5f2e83148c3bd7ab9ae80d1c45fda5
 RUN mkdir /tmp/vips && \
   cd /tmp && \
   git clone https://github.com/jcupitt/libvips.git && \
