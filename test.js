@@ -25,7 +25,7 @@ var singleTest = function(cb) {
 var run = function(name) {
   var count = 0;
 
-  var num = 500;
+  var num = 100;
   var iterationNumbers = [];
   for (var i = 1 ; i <= num ; i += 1) {
     iterationNumbers.push(i);
