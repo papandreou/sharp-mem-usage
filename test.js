@@ -36,6 +36,7 @@ var run = function(name) {
     singleTest(cb);
   }, function (err) {
     if (err) throw err;
+    require('heapdump').writeSnapshot(pathModule.resolve(__dirname, '' + Date.now() + '.heapsnapshot'));
   });
 };
 
