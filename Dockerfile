@@ -43,7 +43,7 @@ RUN mkdir /tmp/vips && \
   echo ${TARGET}/lib > /etc/ld.so.conf.d/vips.conf && \
   ldconfig
 
-ENV VERSION_NODE 5.5.0
+ENV VERSION_NODE 0.10.45
 RUN mkdir /node && \
   curl -L https://nodejs.org/download/release/v${VERSION_NODE}/node-v${VERSION_NODE}-linux-x64.tar.gz | tar xzC /node --strip-components=1
 ENV PATH /node/bin:$PATH
