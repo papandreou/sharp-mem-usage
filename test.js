@@ -7,10 +7,8 @@ sharp.cache(false);
 
 var fileName = '100mpix.jpg';
 
-var image = fs.readFileSync(pathModule.resolve(__dirname, '100mpix.jpg'));
-
 var singleTest = function(cb) {
-  var i = sharp(Buffer.concat([image]));
+  var i = sharp();
   i.embed().interpolateWith(sharp.interpolator.bicubic)
     .resize(1000,1000).rotate()
     .background({r:0,g:0,b:0,a:0}).quality(75)
@@ -20,6 +18,7 @@ var singleTest = function(cb) {
     }
     cb();
   });
+  fs.createReadStream(pathModule.resolve(__dirname, '100mpix.jpg')).pipe(i);
 };
 
 var run = function(name) {
