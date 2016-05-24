@@ -10,7 +10,7 @@ var fileName = '100mpix.jpg';
 var imageBuffer = fs.readFileSync(pathModule.resolve(__dirname, '100mpix.jpg'));
 
 var singleTest = function(cb) {
-  var i = sharp();
+  var i = sharp(new Buffer(imageBuffer));
   i.embed().interpolateWith(sharp.interpolator.bicubic)
     .resize(1000,1000).rotate()
     .background({r:0,g:0,b:0,a:0}).quality(75)
@@ -20,7 +20,6 @@ var singleTest = function(cb) {
     }
     cb();
   });
-  i.end(new Buffer(imageBuffer));
 };
 
 var run = function(name) {
