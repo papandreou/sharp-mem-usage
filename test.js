@@ -7,6 +7,8 @@ sharp.cache(false);
 
 var fileName = '100mpix.jpg';
 
+var imageBuffer = fs.readFileSync(pathModule.resolve(__dirname, '100mpix.jpg'));
+
 var singleTest = function(cb) {
   var i = sharp();
   i.embed().interpolateWith(sharp.interpolator.bicubic)
@@ -18,7 +20,7 @@ var singleTest = function(cb) {
     }
     cb();
   });
-  fs.createReadStream(pathModule.resolve(__dirname, '100mpix.jpg')).pipe(i);
+  i.end(new Buffer(imageBuffer));
 };
 
 var run = function(name) {
